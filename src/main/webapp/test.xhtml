@@ -1,21 +1,37 @@
-<!DOCTYPE html>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>PrimeFaces Test</title>
-        <h:outputScript name="test.js" />
-        <h:outputStylesheet name="test.css" />
+        <title>Facelet Title</title>
     </h:head>
     <h:body>
+        <center>
+            <h:form>
+                <p:growl id="msg" showDetail="true" escape="false"/>
 
-        <h1>#{testView.string}</h1>
-        <h:form id="frmTest">
-            
-        </h:form>
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:outputLabel for="country" value="Country: " />
+                    <p:selectOneMenu id="country" value="#{pickListView.country}" style="width:150px">
+                        <p:ajax listener="#{pickListView.onCountryChange}" update="city" />
+                        <f:selectItem itemLabel="Select Country" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{pickListView.countriesMap}" />
+                    </p:selectOneMenu>
 
+                    <p:outputLabel for="city" value="City: " />
+                    <p:pickList id="city" value="#{pickListView.citiesMap}" var="cities" itemLabel="#{cities}" itemValue="#{cities}">
+                    
+                    </p:pickList>
+
+                </h:panelGrid>
+                
+                <hr/>
+
+            </h:form>
+        </center>
     </h:body>
 </html>
+

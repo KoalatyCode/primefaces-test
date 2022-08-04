@@ -1,0 +1,2 @@
+VAR#>mvn jetty:run
+VAR#>mvn jetty:run;
